@@ -29,7 +29,9 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
-        <a class="navbar-brand" href="<%= root_path %>">Burrito</a>
+        <%= link_to root_path, class: "navbar-brand" do %>
+          <%= image_tag "/logo.png", alt: (content_for?(:title) ? yield(:title) : "Burrito"), height: 36, loading: "eager" %>
+        <% end %>
         <div class="collapse navbar-collapse">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item"><a class="nav-link" href="<%= burritos_path %>">Burritos</a></li>
