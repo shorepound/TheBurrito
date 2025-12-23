@@ -13,7 +13,7 @@
   <tbody>
     <% @fillings.each do |f| %>
       <tr>
-        <td><%= f.name %></td>
+        <td><%= link_to f.name, admin_filling_path(f) %></td>
         <td>
           <%= link_to "Edit", edit_admin_filling_path(f), class: "btn btn-sm btn-outline-secondary" %>
           <%= link_to "Delete", admin_filling_path(f), method: :delete, data: { confirm: "Delete?" }, class: "btn btn-sm btn-danger ms-1" %>

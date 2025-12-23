@@ -15,7 +15,7 @@
   <tbody>
     <% @users.each do |u| %>
       <tr>
-        <td><%= u.email %></td>
+        <td><%= link_to u.email, admin_user_path(u) %></td>
         <td><%= [u.first_name, u.last_name].compact.join(" ") %></td>
         <td><%= u.is_admin.to_i > 0 ? "Yes" : "No" %></td>
         <td>
