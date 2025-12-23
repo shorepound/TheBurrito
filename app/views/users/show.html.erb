@@ -1,0 +1,6 @@
+<h1>Profile</h1>
+
+<p><strong>Email:</strong> <%= @user.email %></p>
+<p><strong>Name:</strong> <%= [@user.first_name, @user.last_name].compact.join(' ') %></p>
+
+<p><%= link_to "Edit Profile", edit_profile_path, class: "btn btn-primary" %></p>

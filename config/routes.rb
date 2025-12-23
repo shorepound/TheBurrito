@@ -24,6 +24,9 @@ Rails.application.routes.draw do
     resources :toppings
   end
 
+  # User profile (customers can edit themselves)
+  resource :profile, only: [:show, :edit, :update], controller: :users
+
   # Defines the root path route ("/")
   root "burritos#index"
 end
