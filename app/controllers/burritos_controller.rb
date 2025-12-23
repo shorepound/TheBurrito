@@ -38,24 +38,30 @@ class BurritosController < ApplicationController
   end
 
   def create
-    @burrito = current_user.burritos.build(burrito_params)
-    if @burrito.save
-      update_associations
-      respond_to do |format|
-        format.html { redirect_to @burrito, notice: "Burrito created." }
-        format.json { render json: @burrito, status: :created }
+    if logged_in?
+      @burrito = current_user.burritos.build(burrito_params)
+      if @burrito.save
+        update_associations
+        respond_to do |format|
+          format.html { redirect_to @burrito, notice: "Burrito created." }
+          format.json { render json: @burrito, status: :created }
+        end
+      else
+        respond_to do |format|
+          format.html do
+            @tortillas = Tortilla.all
+            @sizes = Size.all
+            @fillings = Filling.all
+            @toppings = Topping.all
+            render :new, status: :unprocessable_entity
+          end
+          format.json { render json: { errors: @burrito.errors.full_messages }, status: :unprocessable_entity }
+        end
       end
     else
-      respond_to do |format|
-        format.html do
-          @tortillas = Tortilla.all
-          @sizes = Size.all
-          @fillings = Filling.all
-          @toppings = Topping.all
-          render :new, status: :unprocessable_entity
-        end
-        format.json { render json: { errors: @burrito.errors.full_messages }, status: :unprocessable_entity }
-      end
+      # save burrito details in session and prompt to sign up/in
+      session[:pending_burrito] = params[:burrito].to_unsafe_h
+      redirect_to new_user_registration_path, notice: "Please create an account to save your burrito."
     end
   end
 

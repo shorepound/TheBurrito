@@ -13,6 +13,21 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
   end
 
+  def after_sign_in_path
+    # If the user signed in after creating a pending burrito, create it now
+    if session[:pending_burrito]
+      pending = session.delete(:pending_burrito)
+      burrito = current_user.burritos.build(pending.slice("name", "tortilla_id", "size_id"))
+      if burrito.save
+        burrito.fillings = Filling.where(id: pending["filling_ids"]) if pending["filling_ids"]
+        burrito.toppings = Topping.where(id: pending["topping_ids"]) if pending["topping_ids"]
+        return burrito_path(burrito)
+      end
+    end
+
+    root_path
+  end
+
   def logged_in?
     current_user.present?
   end

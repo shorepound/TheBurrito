@@ -27,6 +27,13 @@ Rails.application.routes.draw do
   # User profile (customers can edit themselves)
   resource :profile, only: [:show, :edit, :update], controller: :users
 
+  # Public sign up
+  get "signup", to: "registrations#new", as: :new_user_registration
+  post "signup", to: "registrations#create", as: :user_registration
+
+  # Password reset
+  resources :password_resets, only: [:new, :create, :edit, :update]
+
   # Defines the root path route ("/")
   root "burritos#index"
 end

@@ -1,0 +1,11 @@
+<h1>Set a New Password</h1>
+
+<%= form_with model: @user, url: password_reset_path(params[:id]), local: true do |f| %>
+  <div class="mb-3">
+    <%= f.label :password %>
+    <%= f.password_field :password, class: "form-control" %>
+  </div>
+  <div>
+    <%= f.submit "Update password", class: "btn btn-primary" %>
+  </div>
+<% end %>
