@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     if user&.authenticate(params[:password])
       session[:user_id] = user.id
       respond_to do |format|
-        format.html { redirect_to root_path, notice: "Signed in" }
+        format.html { redirect_to after_sign_in_path, notice: "Signed in" }
         format.json { render json: { id: user.id, email: user.email, is_admin: user.is_admin.to_i > 0 } }
       end
     else

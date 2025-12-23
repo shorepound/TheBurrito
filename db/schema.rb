@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_12_23_000000) do
+ActiveRecord::Schema[8.1].define(version: 2025_12_23_001000) do
   create_table "burrito_fillings", force: :cascade do |t|
     t.integer "burrito_id", null: false
     t.datetime "created_at", null: false
@@ -72,8 +72,11 @@ ActiveRecord::Schema[8.1].define(version: 2025_12_23_000000) do
     t.integer "is_admin", limit: 1, default: 0, null: false
     t.string "last_name"
     t.string "password_digest", limit: 60
+    t.datetime "reset_password_sent_at"
+    t.string "reset_password_token"
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "burrito_fillings", "burritos"

@@ -34,6 +34,10 @@ Rails.application.routes.draw do
   # Password reset
   resources :password_resets, only: [:new, :create, :edit, :update]
 
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
+
   # Defines the root path route ("/")
   root "burritos#index"
 end
