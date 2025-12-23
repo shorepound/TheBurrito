@@ -1,0 +1,21 @@
+<%= form_with(model: [:admin, size], local: true) do |f| %>
+  <% if size.errors.any? %>
+    <div class="alert alert-danger">
+      <ul>
+        <% size.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+
+  <div>
+    <%= f.submit class: "btn btn-primary" %>
+    <%= link_to "Cancel", admin_sizes_path, class: "btn btn-link" %>
+  </div>
+<% end %>

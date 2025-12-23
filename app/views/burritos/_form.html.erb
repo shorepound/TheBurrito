@@ -1,0 +1,57 @@
+<%= form_with(model: burrito, local: true, html: { class: 'needs-validation' }) do |f| %>
+  <% if burrito.errors.any? %>
+    <div class="alert alert-danger">
+      <p><%= pluralize(burrito.errors.count, "error") %> prohibited this burrito from being saved:</p>
+      <ul>
+        <% burrito.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <%= f.label :tortilla_id, "Tortilla" %>
+      <%= f.collection_select :tortilla_id, @tortillas, :id, :name, { prompt: "Choose" }, { class: "form-select" } %>
+    </div>
+    <div class="col-md-6 mb-3">
+      <%= f.label :size_id, "Size" %>
+      <%= f.collection_select :size_id, @sizes, :id, :name, { prompt: "Choose" }, { class: "form-select" } %>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Fillings</label>
+    <div class="d-flex flex-wrap">
+      <% @fillings.each do |fill| %>
+        <div class="form-check me-3">
+          <%= check_box_tag "burrito[filling_ids][]", fill.id, burrito.fillings.include?(fill), id: "filling_#{fill.id}", class: "form-check-input" %>
+          <%= label_tag "filling_#{fill.id}", fill.name, class: "form-check-label" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Toppings</label>
+    <div class="d-flex flex-wrap">
+      <% @toppings.each do |top| %>
+        <div class="form-check me-3">
+          <%= check_box_tag "burrito[topping_ids][]", top.id, burrito.toppings.include?(top), id: "topping_#{top.id}", class: "form-check-input" %>
+          <%= label_tag "topping_#{top.id}", top.name, class: "form-check-label" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div>
+    <%= f.submit class: "btn btn-primary" %>
+    <%= link_to "Cancel", burritos_path, class: "btn btn-link" %>
+  </div>
+<% end %>
