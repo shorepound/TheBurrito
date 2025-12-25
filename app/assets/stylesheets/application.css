@@ -1,10 +1,57 @@
 /*
- * This is a manifest file that'll be compiled into application.css.
- *
- * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
- * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
- * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
- * depending on specificity.
- *
- * Consider organizing styles into separate files for maintainability.
+ * Minimal Earthy Taqueria theme
+ * Simple, understated styles to reflect delicious burritos — readable, responsive, and calm.
  */
+
+:root{
+	--bg: #fcf7f2; /* light warm background */
+	--paper: #fffefc;
+	--text: #3b3028; /* deep brown */
+	--muted: #7b6f67;
+	--accent: #a85a2a; /* earthy paprika */
+	--accent-2: #6a9a62; /* avocado touch */
+	--max-width: 1100px;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@400;700&display=swap');
+
+html, body {
+	background: var(--bg);
+	color: var(--text);
+	font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.container{ max-width: var(--max-width); }
+
+/* Navbar */
+.navbar{ background: var(--paper); border-bottom: 1px solid rgba(59,48,40,0.06); }
+.navbar-brand img{ height:34px; }
+
+/* Headings */
+h1,h2,h3{ font-family: 'Playfair Display', Georgia, serif; color: var(--text); }
+
+/* Simple card */
+.card-taqueria{ background: #fff; border-radius:8px; padding:1rem; border:1px solid rgba(59,48,40,0.04); }
+
+/* Buttons — minimal, consistent */
+.btn{ display:inline-block; padding:0.5rem 0.8rem; border-radius:6px; font-weight:600; text-align:center; }
+.btn-primary{ background:var(--accent); color:#fff; border:1px solid rgba(0,0,0,0.04); }
+.btn-primary:hover{ background:#964f24; }
+.btn-secondary{ background:transparent; color:var(--text); border:1px solid rgba(59,48,40,0.06); }
+.btn-link{ background:transparent; border:none; color:var(--muted); padding:0; }
+.btn-danger{ background:#8b2f24; color:#fff; border:1px solid rgba(0,0,0,0.04); }
+.btn-sm{ padding:0.25rem 0.5rem; font-size:0.9rem; }
+
+/* Tables */
+.table{ background:transparent; }
+.table-striped > tbody > tr:nth-of-type(odd) > td{ background: rgba(168,90,42,0.04); }
+
+/* Alerts */
+.alert{ border-radius:8px; }
+
+/* Links */
+a{ color:var(--accent); }
+
+@media (max-width:576px){ .navbar-brand img{ height:28px } }
