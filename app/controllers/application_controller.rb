@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
   def authenticate_user!
     return if logged_in?
     respond_to do |format|
-      format.html { redirect_to root_path, alert: "Please sign in" }
+      format.html { redirect_to root_path, alert: "Please log in" }
       format.json { render json: { error: "Unauthorized" }, status: :unauthorized }
     end
   end
