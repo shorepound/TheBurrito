@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@400;700&display=swap');
+
 /*
  * Minimal Earthy Taqueria theme
  * Simple, understated styles to reflect delicious burritos — readable, responsive, and calm.
@@ -12,8 +14,6 @@
 	--accent-2: #6a9a62; /* avocado touch */
 	--max-width: 1100px;
 }
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@400;700&display=swap');
 
 html, body {
 	background: var(--bg);

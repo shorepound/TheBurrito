@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Burrito" %></title>
+    <title><%= content_for(:title) || "The Burrito" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="Burrito">
+    <meta name="application-name" content="The Burrito">
     <meta name="mobile-web-app-capable" content="yes">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -15,7 +15,6 @@
     <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
 
     <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
 
     <!-- Bootstrap CSS (CDN) -->
@@ -88,6 +87,7 @@
             <%= f.submit "Login", class: "btn btn-primary" %>
             <div>
               <%= link_to "Sign up", new_user_registration_path, class: "btn btn-link" %>
+              &nbsp; &nbsp;
               <%= link_to "Forgot?", new_password_reset_path, class: "btn btn-link" %>
             </div>
           </div>
