@@ -1,5 +1,5 @@
 class BurritosController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show, :new]
   before_action :set_burrito, only: [:show, :update, :destroy]
 
   def index
