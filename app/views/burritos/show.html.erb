@@ -1,15 +1,17 @@
-<h1><%= @burrito.name || "Burrito ##{@burrito.id}" %></h1>
+<div class="card-taqueria">
+  <h1><%= @burrito.name || "Burrito ##{@burrito.id}" %></h1>
 
-<p><strong>By:</strong> <%= @burrito.user.email %></p>
-<p><strong>Tortilla:</strong> <%= @burrito.tortilla.name %></p>
-<p><strong>Size:</strong> <%= @burrito.size.name %></p>
-<p><strong>Fillings:</strong> <%= @burrito.fillings.map(&:name).join(", ") %></p>
-<p><strong>Toppings:</strong> <%= @burrito.toppings.map(&:name).join(", ") %></p>
+  <p><strong>By:</strong> <%= @burrito.user.email %></p>
+  <p><strong>Tortilla:</strong> <%= @burrito.tortilla.name %></p>
+  <p><strong>Size:</strong> <%= @burrito.size.name %></p>
+  <p><strong>Fillings:</strong> <%= @burrito.fillings.map(&:name).join(", ") %></p>
+  <p><strong>Toppings:</strong> <%= @burrito.toppings.map(&:name).join(", ") %></p>
 
-<p>
-  <%= link_to "Back", burritos_path %>
-  <% if @burrito.user == current_user || admin_user? %>
-    | <%= link_to "Edit", edit_burrito_path(@burrito) %>
-    | <%= link_to "Delete", burrito_path(@burrito), method: :delete, data: { confirm: "Delete?" } %>
-  <% end %>
-</p>
+  <p>
+    <%= link_to "Back", burritos_path, class: "btn btn-secondary" %>
+    <% if @burrito.user == current_user || admin_user? %>
+      <%= link_to "Edit", edit_burrito_path(@burrito), class: "btn btn-primary ms-2" %>
+      <%= link_to "Delete", burrito_path(@burrito), method: :delete, data: { confirm: "Delete?" }, class: "btn btn-danger ms-2" %>
+    <% end %>
+  </p>
+</div>
