@@ -19,7 +19,7 @@
         <td><%= link_to u.email, admin_user_path(u) %></td>
         <td><%= [u.first_name, u.last_name].compact.join(" ") %></td>
         <td><%= u.is_admin.to_i > 0 ? "Yes" : "No" %></td>
-        <td>
+        <td class="btn-column">
           <%= link_to "Edit", edit_admin_user_path(u), class: "btn btn-sm btn-outline-secondary" %>
           <%= link_to "Delete", admin_user_path(u), method: :delete, data: { confirm: "Delete user?" }, class: "btn btn-sm btn-danger ms-1" %>
         </td>

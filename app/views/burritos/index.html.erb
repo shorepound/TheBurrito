@@ -25,7 +25,7 @@
         <td><%= b.size.name %></td>
         <td><%= b.fillings.map(&:name).join(", ") %></td>
         <td><%= b.toppings.map(&:name).join(", ") %></td>
-        <td>
+        <td class="btn-column">
           <% if b.user == current_user || admin_user? %>
             <%= link_to "Edit", edit_burrito_path(b), class: "btn btn-sm btn-outline-secondary" %>
             <%= link_to "Delete", burrito_path(b), method: :delete, data: { confirm: "Delete?" }, class: "btn btn-sm btn-danger ms-1" %>

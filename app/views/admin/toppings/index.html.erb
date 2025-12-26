@@ -15,7 +15,7 @@
     <% @toppings.each do |t| %>
       <tr>
         <td><%= link_to t.name, admin_topping_path(t) %></td>
-        <td>
+        <td class="btn-column">
           <%= link_to "Edit", edit_admin_topping_path(t), class: "btn btn-sm btn-outline-secondary" %>
           <%= link_to "Delete", admin_topping_path(t), method: :delete, data: { confirm: "Delete?" }, class: "btn btn-sm btn-danger ms-1" %>
         </td>

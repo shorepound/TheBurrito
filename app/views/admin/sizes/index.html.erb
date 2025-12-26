@@ -14,7 +14,7 @@
     <% @sizes.each do |s| %>
       <tr>
         <td><%= link_to s.name, admin_size_path(s) %></td>
-        <td>
+        <td class="btn-column">
           <%= link_to "Edit", edit_admin_size_path(s), class: "btn btn-sm btn-outline-secondary" %>
           <%= link_to "Delete", admin_size_path(s), method: :delete, data: { confirm: "Delete?" }, class: "btn btn-sm btn-danger ms-1" %>
         </td>
