@@ -1,4 +1,4 @@
-<%= form_with(model: burrito, local: true, html: { class: 'needs-validation' }) do |f| %>
+<%= form_with(model: burrito, local: true, html: { class: 'needs-validation', data: { controller: 'burrito-form' } }) do |f| %>
   <% if burrito.errors.any? %>
     <div class="alert alert-danger">
       <p><%= pluralize(burrito.errors.count, "error") %> prohibited this burrito from being saved:</p>
@@ -12,23 +12,39 @@
 
   <div class="mb-3">
     <%= f.label :name %>
-    <%= f.text_field :name, class: "form-control" %>
+    <%= f.text_field :name, class: "form-control", placeholder: "e.g. El Jefe", required: true, aria: { describedby: 'nameHelp' } %>
+    <div id="nameHelp" class="form-text">Give your burrito a memorable name (required).</div>
+    <% if burrito.errors[:name].any? %>
+      <div class="invalid-feedback d-block"><%= burrito.errors[:name].join(', ') %></div>
+    <% end %>
   </div>
 
   <div class="row">
     <div class="col-md-6 mb-3">
       <%= f.label :tortilla_id, "Tortilla" %>
-      <%= f.collection_select :tortilla_id, @tortillas, :id, :name, { prompt: "Choose" }, { class: "form-select" } %>
+      <%= f.collection_select :tortilla_id, @tortillas, :id, :name, { prompt: "Choose" }, { class: "form-select", required: true, aria: { describedby: 'tortillaHelp' } } %>
+      <div id="tortillaHelp" class="form-text">Choose a tortilla (required).</div>
+      <% if burrito.errors[:tortilla_id].any? %>
+        <div class="invalid-feedback d-block"><%= burrito.errors[:tortilla_id].join(', ') %></div>
+      <% end %>
     </div>
     <div class="col-md-6 mb-3">
       <%= f.label :size_id, "Size" %>
-      <%= f.collection_select :size_id, @sizes, :id, :name, { prompt: "Choose" }, { class: "form-select" } %>
+      <%= f.collection_select :size_id, @sizes, :id, :name, { prompt: "Choose" }, { class: "form-select", required: true, aria: { describedby: 'sizeHelp' } } %>
+      <div id="sizeHelp" class="form-text">Choose a size (required).</div>
+      <% if burrito.errors[:size_id].any? %>
+        <div class="invalid-feedback d-block"><%= burrito.errors[:size_id].join(', ') %></div>
+      <% end %>
     </div>
   </div>
 
   <div class="mb-3">
-    <label class="form-label">Fillings</label>
-    <div class="d-flex flex-wrap">
+    <label class="form-label">Fillings <small class="text-muted">(<span id="fillings-group-count">0</span> selected)</small></label>
+    <div class="mb-2">
+      <button type="button" class="btn btn-sm btn-primary me-2" data-action="click->burrito-form#selectAll" data-burrito-form-group-value="fillings-group">Select all</button>
+      <button type="button" class="btn btn-sm btn-outline-secondary" data-action="click->burrito-form#clearGroup" data-burrito-form-group-value="fillings-group">Clear</button>
+    </div>
+    <div id="fillings-group" class="d-flex flex-wrap">
       <% @fillings.each do |fill| %>
         <div class="form-check me-3">
           <%= check_box_tag "burrito[filling_ids][]", fill.id, burrito.fillings.include?(fill), id: "filling_#{fill.id}", class: "form-check-input" %>
@@ -39,8 +55,12 @@
   </div>
 
   <div class="mb-3">
-    <label class="form-label">Toppings</label>
-    <div class="d-flex flex-wrap">
+    <label class="form-label">Toppings <small class="text-muted">(<span id="toppings-group-count">0</span> selected)</small></label>
+    <div class="mb-2">
+      <button type="button" class="btn btn-sm btn-primary me-2" data-action="click->burrito-form#selectAll" data-burrito-form-group-value="toppings-group">Select all</button>
+      <button type="button" class="btn btn-sm btn-outline-secondary" data-action="click->burrito-form#clearGroup" data-burrito-form-group-value="toppings-group">Clear</button>
+    </div>
+    <div id="toppings-group" class="d-flex flex-wrap">
       <% @toppings.each do |top| %>
         <div class="form-check me-3">
           <%= check_box_tag "burrito[topping_ids][]", top.id, burrito.toppings.include?(top), id: "topping_#{top.id}", class: "form-check-input" %>
@@ -51,7 +71,8 @@
   </div>
 
   <div>
-    <%= f.submit class: "btn btn-primary" %>
+    <%= f.submit "Save Burrito", class: "btn btn-success me-2" %>
     <%= link_to "Cancel", burritos_path, class: "btn btn-link" %>
   </div>
+  
 <% end %>
