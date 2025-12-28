@@ -1,6 +1,9 @@
 <td class="btn-column">
-  <% if local_assigns.key?(:show_condition) ? show_condition : true %>
-    <%= link_to "Edit", edit_path, class: (btn_class || "btn btn-sm btn-outline-secondary") %>
-    <%= link_to "Delete", delete_path, method: :delete, data: { confirm: (delete_confirm || "Delete?") }, class: "btn btn-sm btn-danger ms-1" %>
+  <% show = local_assigns.key?(:show_condition) ? local_assigns[:show_condition] : true %>
+  <% if show %>
+    <% edit_cls = local_assigns.fetch(:btn_class, "btn btn-sm btn-outline-secondary") %>
+    <% confirm_txt = local_assigns.fetch(:delete_confirm, "Delete?") %>
+    <%= link_to "Edit", edit_path, class: edit_cls %>
+    <%= link_to "Delete", delete_path, method: :delete, data: { confirm: confirm_txt }, class: "btn btn-sm btn-danger ms-1" %>
   <% end %>
 </td>
