@@ -1,0 +1,6 @@
+<td class="btn-column">
+  <% if local_assigns.key?(:show_condition) ? show_condition : true %>
+    <%= link_to "Edit", edit_path, class: (btn_class || "btn btn-sm btn-outline-secondary") %>
+    <%= link_to "Delete", delete_path, method: :delete, data: { confirm: (delete_confirm || "Delete?") }, class: "btn btn-sm btn-danger ms-1" %>
+  <% end %>
+</td>

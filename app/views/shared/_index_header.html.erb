@@ -1,0 +1,6 @@
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h1 class="<%= title_class || 'h4 mb-0' %>"><%= title %></h1>
+  <% if new_path %>
+    <%= link_to (new_label || "New #{title}"), new_path, class: "btn btn-primary" %>
+  <% end %>
+</div>

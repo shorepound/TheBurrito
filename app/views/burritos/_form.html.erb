@@ -1,14 +1,5 @@
 <%= form_with(model: burrito, local: true, html: { class: 'needs-validation', data: { controller: 'burrito-form' } }) do |f| %>
-  <% if burrito.errors.any? %>
-    <div class="alert alert-danger">
-      <p><%= pluralize(burrito.errors.count, "error") %> prohibited this burrito from being saved:</p>
-      <ul>
-        <% burrito.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render 'shared/form_errors', object: burrito %>
 
   <div class="mb-3">
     <%= f.label :name %>

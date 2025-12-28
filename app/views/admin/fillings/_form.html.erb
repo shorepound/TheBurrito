@@ -1,13 +1,5 @@
 <%= form_with(model: [:admin, filling], local: true) do |f| %>
-  <% if filling.errors.any? %>
-    <div class="alert alert-danger">
-      <ul>
-        <% filling.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render 'shared/form_errors', object: filling %>
 
   <div class="mb-3">
     <%= f.label :name %>
