@@ -26,37 +26,7 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container">
-        <%= link_to root_path, class: "navbar-brand" do %>
-          <%= image_tag "/logo.png", alt: (content_for?(:title) ? yield(:title) : "Burrito"), height: 36, loading: "eager" %>
-        <% end %>
-        <div class="collapse navbar-collapse">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <% if admin_user? %>
-              <li class="nav-item dropdown">
-                <button class="nav-link dropdown-toggle btn btn-link" type="button" id="adminMenu" data-bs-toggle="dropdown" aria-expanded="false">Admin</button>
-                <ul class="dropdown-menu" aria-labelledby="adminMenu">
-                  <li><%= link_to "Users", admin_users_path, class: "dropdown-item" %></li>
-                  <li><%= link_to "Tortillas", admin_tortillas_path, class: "dropdown-item" %></li>
-                  <li><%= link_to "Sizes", admin_sizes_path, class: "dropdown-item" %></li>
-                  <li><%= link_to "Fillings", admin_fillings_path, class: "dropdown-item" %></li>
-                  <li><%= link_to "Toppings", admin_toppings_path, class: "dropdown-item" %></li>
-                </ul>
-              </li>
-            <% end %>
-          </ul>
-          <ul class="navbar-nav">
-            <% if logged_in? %>
-              <li class="nav-item"><span class="nav-link">Signed in as <strong><%= current_user.email %></strong></span></li>
-              <li class="nav-item"><%= button_to "Logout", logout_path, method: :delete, class: "btn btn-link nav-link", form: { style: 'display:inline' } %></li>
-            <% else %>
-              <li class="nav-item"><a class="nav-link" href="#" onclick="document.getElementById('login-form').style.display='block';return false;">Login</a></li>
-            <% end %>
-          </ul>
-        </div>
-      </div>
-    </nav>
+    <%= render 'shared/header' %>
 
     <div class="container mt-4">
       <div data-controller="flash" data-flash-timeout-value="5000">
@@ -71,30 +41,7 @@
       <%= yield %>
     </div>
 
-    <% unless logged_in? %>
-      <div id="login-form" style="display:none; position:fixed; right:20px; top:80px; background:#fff;padding:12px;border:1px solid #ddd; z-index:1050; width:320px;">
-        <h5>Login</h5>
-        <%= form_with url: login_path, local: true do |f| %>
-          <div class="mb-2">
-            <%= f.label :email %>
-            <%= f.email_field :email, class: "form-control" %>
-          </div>
-          <div class="mb-2">
-            <%= f.label :password %>
-            <%= f.password_field :password, class: "form-control" %>
-          </div>
-          <div class="d-flex justify-content-between align-items-center mb-2">
-            <%= f.submit "Login", class: "btn btn-primary" %>
-            <div>
-              <%= link_to "Sign up", new_user_registration_path, class: "btn btn-link" %>
-              &nbsp; &nbsp;
-              <%= link_to "Forgot?", new_password_reset_path, class: "btn btn-link" %>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
-
+    <%= render 'shared/footer' %>
     <!-- Bootstrap JS (CDN) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script>

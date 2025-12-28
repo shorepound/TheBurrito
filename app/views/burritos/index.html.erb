@@ -1,4 +1,4 @@
-<div class="card-taqueria mb-4">
+<%= card_taqueria('mb-4') do %>
   <div class="d-flex justify-content-between align-items-center mb-3">
     <h1 class="h3 mb-0">Burritos</h1>
     <%= link_to "Create Burrito", new_burrito_path, class: "btn btn-primary" %>
@@ -35,4 +35,4 @@
     <% end %>
   </tbody>
   </table>
-</div>
+<% end %>

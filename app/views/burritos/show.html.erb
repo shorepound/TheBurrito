@@ -1,4 +1,4 @@
-<div class="card-taqueria">
+<%= card_taqueria do %>
   <h1><%= @burrito.name || "Burrito ##{@burrito.id}" %></h1>
 
   <p><strong>By:</strong> <%= @burrito.user.email %></p>
@@ -14,4 +14,4 @@
       <%= link_to "Delete", burrito_path(@burrito), method: :delete, data: { confirm: "Delete?" }, class: "btn btn-danger ms-2" %>
     <% end %>
   </p>
-</div>
+<% end %>
